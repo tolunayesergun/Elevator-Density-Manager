@@ -1,0 +1,30 @@
+D:\All Projects\C# Projects\ElevatorDensityProject\bin\Debug\ElevatorDensityProject.exe.config
+D:\All Projects\C# Projects\ElevatorDensityProject\bin\Debug\ElevatorDensityProject.exe
+D:\All Projects\C# Projects\ElevatorDensityProject\bin\Debug\ElevatorDensityProject.pdb
+D:\All Projects\C# Projects\ElevatorDensityProject\obj\Debug\ElevatorDensityProject.csprojAssemblyReference.cache
+D:\All Projects\C# Projects\ElevatorDensityProject\obj\Debug\ElevatorDensityProject.MainForm.resources
+D:\All Projects\C# Projects\ElevatorDensityProject\obj\Debug\ElevatorDensityProject.Properties.Resources.resources
+D:\All Projects\C# Projects\ElevatorDensityProject\obj\Debug\ElevatorDensityProject.csproj.GenerateResource.cache
+D:\All Projects\C# Projects\ElevatorDensityProject\obj\Debug\ElevatorDensityProject.csproj.CoreCompileInputs.cache
+D:\All Projects\C# Projects\ElevatorDensityProject\obj\Debug\ElevatorDensityProject.exe
+D:\All Projects\C# Projects\ElevatorDensityProject\obj\Debug\ElevatorDensityProject.pdb
+D:\All Projects\C# Projects\ElevatorDensityProject\bin\Debug\EntityFramework.dll
+D:\All Projects\C# Projects\ElevatorDensityProject\bin\Debug\EntityFramework.SqlServer.dll
+D:\All Projects\C# Projects\ElevatorDensityProject\bin\Debug\EntityFramework.xml
+D:\All Projects\C# Projects\ElevatorDensityProject\bin\Debug\EntityFramework.SqlServer.xml
+D:\All Projects\C# Projects\ElevatorDensityProject\obj\Debug\ElevatorDensityProject.csproj.CopyComplete
+D:\GitHubProjects\ElevatorDensinty\bin\Debug\ElevatorDensityProject.exe.config
+D:\GitHubProjects\ElevatorDensinty\bin\Debug\ElevatorDensityProject.exe
+D:\GitHubProjects\ElevatorDensinty\bin\Debug\ElevatorDensityProject.pdb
+D:\GitHubProjects\ElevatorDensinty\bin\Debug\EntityFramework.dll
+D:\GitHubProjects\ElevatorDensinty\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHubProjects\ElevatorDensinty\bin\Debug\EntityFramework.xml
+D:\GitHubProjects\ElevatorDensinty\bin\Debug\EntityFramework.SqlServer.xml
+D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.csprojAssemblyReference.cache
+D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.MainForm.resources
+D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.Properties.Resources.resources
+D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.csproj.GenerateResource.cache
+D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.csproj.CoreCompileInputs.cache
+D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.csproj.CopyComplete
+D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.exe
+D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.pdb
