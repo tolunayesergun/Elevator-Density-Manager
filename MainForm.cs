@@ -14,9 +14,19 @@ namespace ElevatorDensityProject
             InitializeComponent();
         }
 
+        #region Settings
+
+        public static int msControl = 1000;
+        public static int msElevator = 200;
+        public static int msEntering = 500;
+        public static int msExit = 1000;
+
+        #endregion Settings
+
         #region GlobalDefines
 
         private readonly Random rnd = new Random();
+        private Thread threadInterface;
         private Thread threadEntering;
         private Thread threadExit;
         private Thread threadControl;
@@ -26,7 +36,7 @@ namespace ElevatorDensityProject
         private Thread threadEle4;
         private Thread threadEle5;
 
-        public static System.Drawing.Point[,] locationListEle = new[,]
+        public System.Drawing.Point[,] locationListEle = new[,]
             {
                     { new System.Drawing.Point(394, 452), new System.Drawing.Point(394, 342) , new System.Drawing.Point(394, 232) , new System.Drawing.Point(394, 122) , new System.Drawing.Point(394, 12) },
                     { new System.Drawing.Point(576, 452), new System.Drawing.Point(576, 342), new System.Drawing.Point(576, 232), new System.Drawing.Point(576, 122), new System.Drawing.Point(576, 12) },
@@ -71,6 +81,26 @@ namespace ElevatorDensityProject
                 threadEle3.Abort();
                 threadEle4.Abort();
                 threadEle5.Abort();
+                threadInterface.Abort();
+            }
+        }
+
+        private void btnStartThreadClick(object sender, EventArgs e)
+        {
+            if (!threadEntering.IsAlive)
+            {
+                threadEntering.Start();
+                threadExit.Start();
+                threadControl.Start();
+                threadInterface.Start();
+                threadEle1.Start();
+                threadEle2.Start();
+                threadEle3.Start();
+                threadEle4.Start();
+                threadEle5.Start();
+
+                btnStartThread.Visible = false;
+                groupBox6.Visible = true;
             }
         }
 
@@ -80,6 +110,7 @@ namespace ElevatorDensityProject
             threadEntering = new Thread(new ThreadStart(EnterAVM));
             threadExit = new Thread(new ThreadStart(ExitAVM));
             threadControl = new Thread(new ThreadStart(controlThread));
+            threadInterface = new Thread(new ThreadStart(InterfaceThread));
             threadEle1 = new Thread(() => elevatorThread(0));
             threadEle2 = new Thread(() => elevatorThread(1));
             threadEle3 = new Thread(() => elevatorThread(2));
@@ -96,26 +127,11 @@ namespace ElevatorDensityProject
             eleList.Add(new Elevator { active = false, capacity = 10, countInside = 0, elevatorID = 5, floor = -1, mode = "idle", target = 0, direction = "up" });
         }
 
-        private void btnStartThreadClick(object sender, EventArgs e)
-        {
-            if (!threadEntering.IsAlive)
-            {
-                threadEntering.Start();
-                threadExit.Start();
-                threadControl.Start();
-                threadEle1.Start();
-                threadEle2.Start();
-                threadEle3.Start();
-                threadEle4.Start();
-                threadEle5.Start();
-            }
-        }
-
         #endregion FormMethods
 
-        #region ControlEnterExit
+        #region GeneralThreads
 
-        private void controlThread()
+        private void InterfaceThread()
         {
             while (true)
             {
@@ -123,6 +139,9 @@ namespace ElevatorDensityProject
                 {
                     #region floorTexts
 
+                    totalEnter.Text = peopleList.Count().ToString();
+                    totalLeave.Text = peopleList.Where(p => p.inStore == false).Count().ToString();
+                    totalLine.Text = peopleList.Where(p => p.inLine == true).Count().ToString();
                     floor1.Text = peopleList.Where(p => p.currentFloor == 1).Count().ToString();
                     floor2.Text = peopleList.Where(p => p.currentFloor == 2).Count().ToString();
                     floor3.Text = peopleList.Where(p => p.currentFloor == 3).Count().ToString();
@@ -132,8 +151,14 @@ namespace ElevatorDensityProject
                     line2.Text = peopleList.Where(p => p.currentFloor == 2 && p.inLine == true).Count().ToString();
                     line3.Text = peopleList.Where(p => p.currentFloor == 3 && p.inLine == true).Count().ToString();
                     line4.Text = peopleList.Where(p => p.currentFloor == 4 && p.inLine == true).Count().ToString();
+                    tar1.Text = peopleList.Where(p => p.targetFloor == 1 && p.currentFloor == 0).Count().ToString();
+                    tar2.Text = peopleList.Where(p => p.targetFloor == 2 && p.currentFloor == 0).Count().ToString();
+                    tar3.Text = peopleList.Where(p => p.targetFloor == 3 && p.currentFloor == 0).Count().ToString();
+                    tar4.Text = peopleList.Where(p => p.targetFloor == 4 && p.currentFloor == 0).Count().ToString();
 
                     #endregion floorTexts
+
+                    #region ElevatorTexts
 
                     #region elevator1Texts
 
@@ -195,12 +220,23 @@ namespace ElevatorDensityProject
 
                     #endregion elevator5Texts
 
+                    #endregion ElevatorTexts
+                }
+            }
+        }
+
+        private void controlThread()
+        {
+            while (true)
+            {
+                lock (peopleList)
+                {
                     #region ActiveControl
 
                     var lineCount = peopleList.Where(p => p.inLine == true).Count();
                     var activeEleList = eleList.Where(e => e.active == true).Count();
 
-                    if (lineCount > activeEleList * 20)
+                    if (lineCount > 20)
                     {
                         for (int i = 1; i < 5; i++)
                         {
@@ -213,7 +249,7 @@ namespace ElevatorDensityProject
                             }
                         }
                     }
-                    else if (lineCount < activeEleList * 10)
+                    else if (lineCount < 10)
                     {
                         if (activeEleList != 1)
                         {
@@ -225,7 +261,8 @@ namespace ElevatorDensityProject
 
                     #endregion ActiveControl
                 }
-                Thread.Sleep(10);
+
+                Thread.Sleep(msControl);
             }
         }
 
@@ -239,12 +276,12 @@ namespace ElevatorDensityProject
                 {
                     for (int i = 0; i < peopleNumber; i++)
                     {
-                        peopleList.Add(new Person { personID = TotalPersonNumber, currentFloor = 0, targetFloor = rnd.Next(1, 5), inLine = true });
+                        peopleList.Add(new Person { personID = TotalPersonNumber, inStore = true, currentFloor = 0, targetFloor = rnd.Next(1, 5), inLine = true, inElevator = false });
                         TotalPersonNumber++;
                     }
                 }
 
-                Thread.Sleep(500);
+                Thread.Sleep(msEntering);
             }
         }
 
@@ -256,7 +293,7 @@ namespace ElevatorDensityProject
                 int peopleNumber = rnd.Next(1, 6);
                 lock (peopleList)
                 {
-                    lineList = peopleList.Where(p => p.inLine == false).ToList();
+                    lineList = peopleList.Where(p => p.inLine == false && p.currentFloor != 0 && p.inElevator == false).ToList();
                     if (lineList.Count < peopleNumber) peopleNumber = lineList.Count();
                     if (lineList.Count > 0)
                     {
@@ -270,13 +307,9 @@ namespace ElevatorDensityProject
                     }
                 }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(msExit);
             }
         }
-
-        #endregion ControlEnterExit
-
-        #region ElevatorRegion
 
         private void elevatorThread(int eleNum)
         {
@@ -286,86 +319,92 @@ namespace ElevatorDensityProject
                 {
                     #region DirectionPart
 
-                    if (eleList[eleNum].floor == 4) eleList[eleNum].direction = "down";
-                    else if (eleList[eleNum].floor == 0) eleList[eleNum].direction = "up";
+                    lock (eleList)
+                    {
+                        if (eleList[eleNum].floor == 4) eleList[eleNum].direction = "down";
+                        else if (eleList[eleNum].floor == 0) eleList[eleNum].direction = "up";
 
-                    if (eleList[eleNum].direction == "up") eleList[eleNum].floor++;
-                    else if (eleList[eleNum].direction == "down") eleList[eleNum].floor--;
+                        if (eleList[eleNum].direction == "up") eleList[eleNum].floor++;
+                        else if (eleList[eleNum].direction == "down") eleList[eleNum].floor--;
 
-                    (Controls["eve" + (eleNum + 1).ToString()] as GroupBox).Location = locationListEle[eleNum, eleList[eleNum].floor];
+                        var grpBx = (Controls["eve" + (eleNum + 1).ToString()] as GroupBox);
+                        grpBx.Location = locationListEle[eleNum, eleList[eleNum].floor];
+                    }
 
                     #endregion DirectionPart
 
-                    #region ListOperations
-
-                    List<Person> enteringElevatorList;
-                    List<Person> leavingElevatorList = null;
                     lock (peopleList)
                     {
-                        enteringElevatorList = peopleList.Where(p => p.currentFloor == eleList[eleNum].floor && p.inLine == true).ToList();
-                        leavingElevatorList = eleList[eleNum].insideList.Where(p => p.targetFloor == eleList[eleNum].floor).ToList();
-                    }
+                        #region ListOperations
 
-                    #endregion ListOperations
+                        List<Person> enteringElevatorList;
+                        if (eleList[eleNum].direction == "up" && (eleList[eleNum].floor > 0 && eleList[eleNum].floor!=4 )) enteringElevatorList = null;
+                        else enteringElevatorList = peopleList.Where(p => p.currentFloor == eleList[eleNum].floor && p.inLine == true && p.inStore == true).ToList();
+                        List<Person> leavingElevatorList = eleList[eleNum].insideList.Where(p => p.targetFloor == eleList[eleNum].floor).ToList();
 
-                    #region Leaving
+                        #endregion ListOperations
 
-                    if (leavingElevatorList.Count() != 0)
-                    {
-                        int loopEleCount = leavingElevatorList.Count();
+                        #region Leaving
 
-                        for (int i = 0; i < loopEleCount; i++)
+                        if (leavingElevatorList.Count() != 0)
                         {
-                            Person person;
-                            lock (peopleList)
+                            int loopEleCount = leavingElevatorList.Count();
+
+                            for (int i = 0; i < loopEleCount; i++)
                             {
+                                Person person;
+
                                 person = peopleList.Where(p => p.personID == leavingElevatorList[i].personID).FirstOrDefault();
-                            }
-                            if (person != null)
-                            {
-                                person.currentFloor = eleList[eleNum].floor;
-                                person.targetFloor = 0;
-                                person.inLine = false;
-                                eleList[eleNum].insideList.Remove(leavingElevatorList[i]);
-                                eleList[eleNum].countInside--;
-                                ((Controls["eve" + (eleNum + 1).ToString()] as GroupBox).Controls["ele" + (eleNum + 1).ToString() + "Cap"] as TextBox).Text = eleList[eleNum].countInside + "/" + eleList[eleNum].capacity;
-                            }
-                        }
-                    }
 
-                    #endregion Leaving
-
-                    #region Entering
-
-                    if (eleList[eleNum].active == true)
-                    {
-                        int loopCount = eleList[eleNum].capacity - eleList[eleNum].countInside;
-                        if (enteringElevatorList.Count() < loopCount) loopCount = enteringElevatorList.Count();
-
-                        for (int i = 0; i < loopCount; i++)
-                        {
-                            Person person;
-                            lock (peopleList)
-                            {
-                                person = peopleList.Where(p => p.personID == enteringElevatorList[i].personID).FirstOrDefault();
                                 if (person != null)
                                 {
-                                    eleList[eleNum].insideList.Add(person);
-                                    eleList[eleNum].countInside++;                               
+                                    person.currentFloor = eleList[eleNum].floor;
+                                    if (person.currentFloor == 0) person.inStore = false;
+                                    person.targetFloor = -1;
+                                    person.inLine = false;
+                                    person.inElevator = false;
+                                    eleList[eleNum].insideList.Remove(leavingElevatorList[i]);
+                                    eleList[eleNum].countInside--;
                                     ((Controls["eve" + (eleNum + 1).ToString()] as GroupBox).Controls["ele" + (eleNum + 1).ToString() + "Cap"] as TextBox).Text = eleList[eleNum].countInside + "/" + eleList[eleNum].capacity;
-                                    person.currentFloor = -1;
                                 }
                             }
-                          
                         }
-                    }
 
-                    #endregion Entering
+                        #endregion Leaving
+
+                        #region Entering
+
+                        if (enteringElevatorList != null)
+                        {
+                            if (eleList[eleNum].active == true)
+                            {
+                                int loopCount = eleList[eleNum].capacity - eleList[eleNum].countInside;
+                                if (enteringElevatorList.Count() < loopCount) loopCount = enteringElevatorList.Count();
+                                for (int i = 0; i < loopCount; i++)
+                                {
+                                    Person person;
+
+                                    person = peopleList.Where(p => p.personID == enteringElevatorList[i].personID).FirstOrDefault();
+                                    if (person != null)
+                                    {
+                                        eleList[eleNum].insideList.Add(person);
+                                        eleList[eleNum].countInside++;
+                                        person.inElevator = true;
+                                        person.inLine = false;
+                                        ((Controls["eve" + (eleNum + 1).ToString()] as GroupBox).Controls["ele" + (eleNum + 1).ToString() + "Cap"] as TextBox).Text = eleList[eleNum].countInside + "/" + eleList[eleNum].capacity;
+                                        person.currentFloor = -1;
+                                    }
+                                }
+                            }
+                        }
+
+                        #endregion Entering
+                    }
                 }
-                Thread.Sleep(600);
+                Thread.Sleep(msElevator);
             }
         }
 
-        #endregion ElevatorRegion
+        #endregion GeneralThreads
     }
 }

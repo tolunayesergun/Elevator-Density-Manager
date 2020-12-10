@@ -12,5 +12,7 @@ namespace ElevatorDensityProject.Models
         public int currentFloor { get; set; }
         public int targetFloor { get; set; }
         public bool inLine { get; set; }
+        public bool inStore { get; set; }
+        public bool inElevator { get; set; }
     }
 }

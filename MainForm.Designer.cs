@@ -30,6 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.tar4 = new System.Windows.Forms.TextBox();
+            this.tar3 = new System.Windows.Forms.TextBox();
+            this.tar2 = new System.Windows.Forms.TextBox();
+            this.tar1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.line0 = new System.Windows.Forms.TextBox();
             this.btnStartThread = new System.Windows.Forms.Button();
@@ -147,6 +155,14 @@
             this.ele5f2 = new System.Windows.Forms.TextBox();
             this.ele4Active = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.totalLine = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.totalLeave = new System.Windows.Forms.TextBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.totalEnter = new System.Windows.Forms.TextBox();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.eve1.SuspendLayout();
             this.eve2.SuspendLayout();
@@ -162,10 +178,19 @@
             this.grpEle2.SuspendLayout();
             this.grpEle3.SuspendLayout();
             this.grpEle4.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label48);
+            this.groupBox1.Controls.Add(this.label47);
+            this.groupBox1.Controls.Add(this.label46);
+            this.groupBox1.Controls.Add(this.label45);
+            this.groupBox1.Controls.Add(this.tar4);
+            this.groupBox1.Controls.Add(this.tar3);
+            this.groupBox1.Controls.Add(this.tar2);
+            this.groupBox1.Controls.Add(this.tar1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.line0);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -176,11 +201,99 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ZEMİN KAT";
             // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label48.Location = new System.Drawing.Point(266, 74);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(44, 15);
+            this.label48.TabIndex = 10;
+            this.label48.Text = "4.KAT";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label47.Location = new System.Drawing.Point(189, 74);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(44, 15);
+            this.label47.TabIndex = 9;
+            this.label47.Text = "3.KAT";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label46.Location = new System.Drawing.Point(109, 74);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(44, 15);
+            this.label46.TabIndex = 8;
+            this.label46.Text = "2.KAT";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label45.Location = new System.Drawing.Point(29, 74);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(44, 15);
+            this.label45.TabIndex = 4;
+            this.label45.Text = "1.KAT";
+            // 
+            // tar4
+            // 
+            this.tar4.Enabled = false;
+            this.tar4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tar4.Location = new System.Drawing.Point(255, 53);
+            this.tar4.Name = "tar4";
+            this.tar4.ReadOnly = true;
+            this.tar4.Size = new System.Drawing.Size(70, 21);
+            this.tar4.TabIndex = 7;
+            this.tar4.Text = "0";
+            this.tar4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tar3
+            // 
+            this.tar3.Enabled = false;
+            this.tar3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tar3.Location = new System.Drawing.Point(176, 53);
+            this.tar3.Name = "tar3";
+            this.tar3.ReadOnly = true;
+            this.tar3.Size = new System.Drawing.Size(70, 21);
+            this.tar3.TabIndex = 6;
+            this.tar3.Text = "0";
+            this.tar3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tar2
+            // 
+            this.tar2.Enabled = false;
+            this.tar2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tar2.Location = new System.Drawing.Point(97, 53);
+            this.tar2.Name = "tar2";
+            this.tar2.ReadOnly = true;
+            this.tar2.Size = new System.Drawing.Size(70, 21);
+            this.tar2.TabIndex = 5;
+            this.tar2.Text = "0";
+            this.tar2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tar1
+            // 
+            this.tar1.Enabled = false;
+            this.tar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tar1.Location = new System.Drawing.Point(18, 53);
+            this.tar1.Name = "tar1";
+            this.tar1.ReadOnly = true;
+            this.tar1.Size = new System.Drawing.Size(70, 21);
+            this.tar1.TabIndex = 4;
+            this.tar1.Text = "0";
+            this.tar1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(15, 41);
+            this.label2.Location = new System.Drawing.Point(15, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(175, 15);
             this.label2.TabIndex = 3;
@@ -190,7 +303,7 @@
             // 
             this.line0.Enabled = false;
             this.line0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.line0.Location = new System.Drawing.Point(195, 38);
+            this.line0.Location = new System.Drawing.Point(195, 19);
             this.line0.Name = "line0";
             this.line0.ReadOnly = true;
             this.line0.Size = new System.Drawing.Size(130, 21);
@@ -199,10 +312,11 @@
             // 
             // btnStartThread
             // 
-            this.btnStartThread.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnStartThread.Location = new System.Drawing.Point(11, 557);
+            this.btnStartThread.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStartThread.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnStartThread.Location = new System.Drawing.Point(20, 555);
             this.btnStartThread.Name = "btnStartThread";
-            this.btnStartThread.Size = new System.Drawing.Size(377, 170);
+            this.btnStartThread.Size = new System.Drawing.Size(359, 163);
             this.btnStartThread.TabIndex = 4;
             this.btnStartThread.Text = "Başlat";
             this.btnStartThread.UseVisualStyleBackColor = true;
@@ -371,7 +485,7 @@
             this.panel7.BackColor = System.Drawing.Color.Gray;
             this.panel7.Location = new System.Drawing.Point(1283, 4);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(2, 547);
+            this.panel7.Size = new System.Drawing.Size(2, 720);
             this.panel7.TabIndex = 7;
             // 
             // panel9
@@ -379,7 +493,7 @@
             this.panel9.BackColor = System.Drawing.Color.Gray;
             this.panel9.Location = new System.Drawing.Point(12, 5);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(2, 545);
+            this.panel9.Size = new System.Drawing.Size(2, 720);
             this.panel9.TabIndex = 10;
             // 
             // panel10
@@ -387,7 +501,7 @@
             this.panel10.BackColor = System.Drawing.Color.Gray;
             this.panel10.Location = new System.Drawing.Point(386, 6);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(2, 545);
+            this.panel10.Size = new System.Drawing.Size(2, 715);
             this.panel10.TabIndex = 11;
             // 
             // groupBox2
@@ -1334,7 +1448,7 @@
             this.grpEle4.Controls.Add(this.ele5f2);
             this.grpEle4.Controls.Add(this.ele4Active);
             this.grpEle4.Controls.Add(this.label43);
-            this.grpEle4.Location = new System.Drawing.Point(1114, 557);
+            this.grpEle4.Location = new System.Drawing.Point(1111, 557);
             this.grpEle4.Name = "grpEle4";
             this.grpEle4.Size = new System.Drawing.Size(170, 170);
             this.grpEle4.TabIndex = 4;
@@ -1494,11 +1608,101 @@
             this.label43.TabIndex = 35;
             this.label43.Text = "Durum :";
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label51);
+            this.groupBox6.Controls.Add(this.totalLine);
+            this.groupBox6.Controls.Add(this.label49);
+            this.groupBox6.Controls.Add(this.totalLeave);
+            this.groupBox6.Controls.Add(this.label50);
+            this.groupBox6.Controls.Add(this.totalEnter);
+            this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox6.Location = new System.Drawing.Point(20, 553);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(360, 168);
+            this.groupBox6.TabIndex = 13;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Genel";
+            this.groupBox6.Visible = false;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label51.Location = new System.Drawing.Point(15, 119);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(151, 15);
+            this.label51.TabIndex = 5;
+            this.label51.Text = "Kuyruktaki Kişi Sayısı :";
+            // 
+            // totalLine
+            // 
+            this.totalLine.Enabled = false;
+            this.totalLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.totalLine.Location = new System.Drawing.Point(195, 115);
+            this.totalLine.Name = "totalLine";
+            this.totalLine.ReadOnly = true;
+            this.totalLine.Size = new System.Drawing.Size(130, 21);
+            this.totalLine.TabIndex = 4;
+            this.totalLine.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label49.Location = new System.Drawing.Point(12, 77);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(140, 15);
+            this.label49.TabIndex = 3;
+            this.label49.Text = "Toplam Çıkış Sayısı :";
+            // 
+            // totalLeave
+            // 
+            this.totalLeave.Enabled = false;
+            this.totalLeave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.totalLeave.Location = new System.Drawing.Point(195, 73);
+            this.totalLeave.Name = "totalLeave";
+            this.totalLeave.ReadOnly = true;
+            this.totalLeave.Size = new System.Drawing.Size(130, 21);
+            this.totalLeave.TabIndex = 2;
+            this.totalLeave.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label50.Location = new System.Drawing.Point(12, 34);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(139, 15);
+            this.label50.TabIndex = 1;
+            this.label50.Text = "Toplam Giriş Sayısı :";
+            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // totalEnter
+            // 
+            this.totalEnter.Enabled = false;
+            this.totalEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.totalEnter.Location = new System.Drawing.Point(195, 31);
+            this.totalEnter.Name = "totalEnter";
+            this.totalEnter.ReadOnly = true;
+            this.totalEnter.Size = new System.Drawing.Size(130, 21);
+            this.totalEnter.TabIndex = 0;
+            this.totalEnter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.Gray;
+            this.panel8.Location = new System.Drawing.Point(13, 722);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1272, 2);
+            this.panel8.TabIndex = 7;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1294, 743);
+            this.ClientSize = new System.Drawing.Size(1305, 736);
+            this.Controls.Add(this.panel8);
             this.Controls.Add(this.grpEle4);
             this.Controls.Add(this.grpEle3);
             this.Controls.Add(this.grpEle2);
@@ -1524,6 +1728,7 @@
             this.Controls.Add(this.eve1);
             this.Controls.Add(this.btnStartThread);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox6);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
@@ -1561,6 +1766,8 @@
             this.grpEle3.PerformLayout();
             this.grpEle4.ResumeLayout(false);
             this.grpEle4.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1685,6 +1892,22 @@
         private System.Windows.Forms.TextBox ele5f2;
         private System.Windows.Forms.Label ele4Active;
         private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.TextBox tar4;
+        private System.Windows.Forms.TextBox tar3;
+        private System.Windows.Forms.TextBox tar2;
+        private System.Windows.Forms.TextBox tar1;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.TextBox totalLeave;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.TextBox totalEnter;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.TextBox totalLine;
     }
 }
 
