@@ -161,7 +161,7 @@ namespace ElevatorDensityProject
                     #region ElevatorTexts
 
                     #region elevator1Texts
-
+                    ele1Cap.Text= eleList[0].countInside + "/" + eleList[0].capacity;
                     ele1f0.Text = eleList[0].insideList.Where(p => p.targetFloor == 0).Count().ToString();
                     ele1f1.Text = eleList[0].insideList.Where(p => p.targetFloor == 1).Count().ToString();
                     ele1f2.Text = eleList[0].insideList.Where(p => p.targetFloor == 2).Count().ToString();
@@ -173,7 +173,7 @@ namespace ElevatorDensityProject
                     #endregion elevator1Texts
 
                     #region elevator2Texts
-
+                    ele2Cap.Text = eleList[1].countInside + "/" + eleList[1].capacity;
                     ele2f0.Text = eleList[1].insideList.Where(p => p.targetFloor == 0).Count().ToString();
                     ele2f1.Text = eleList[1].insideList.Where(p => p.targetFloor == 1).Count().ToString();
                     ele2f2.Text = eleList[1].insideList.Where(p => p.targetFloor == 2).Count().ToString();
@@ -185,7 +185,7 @@ namespace ElevatorDensityProject
                     #endregion elevator2Texts
 
                     #region elevator3Texts
-
+                    ele3Cap.Text = eleList[2].countInside + "/" + eleList[2].capacity;
                     ele3f0.Text = eleList[2].insideList.Where(p => p.targetFloor == 0).Count().ToString();
                     ele3f1.Text = eleList[2].insideList.Where(p => p.targetFloor == 1).Count().ToString();
                     ele3f2.Text = eleList[2].insideList.Where(p => p.targetFloor == 2).Count().ToString();
@@ -197,7 +197,7 @@ namespace ElevatorDensityProject
                     #endregion elevator3Texts
 
                     #region elevator4Texts
-
+                    ele4Cap.Text = eleList[3].countInside + "/" + eleList[3].capacity;
                     ele4f0.Text = eleList[3].insideList.Where(p => p.targetFloor == 0).Count().ToString();
                     ele4f1.Text = eleList[3].insideList.Where(p => p.targetFloor == 1).Count().ToString();
                     ele4f2.Text = eleList[3].insideList.Where(p => p.targetFloor == 2).Count().ToString();
@@ -209,7 +209,7 @@ namespace ElevatorDensityProject
                     #endregion elevator4Texts
 
                     #region elevator5Texts
-
+                    ele5Cap.Text = eleList[4].countInside + "/" + eleList[4].capacity;
                     ele5f0.Text = eleList[4].insideList.Where(p => p.targetFloor == 0).Count().ToString();
                     ele5f1.Text = eleList[4].insideList.Where(p => p.targetFloor == 1).Count().ToString();
                     ele5f2.Text = eleList[4].insideList.Where(p => p.targetFloor == 2).Count().ToString();
@@ -318,14 +318,22 @@ namespace ElevatorDensityProject
                 if (eleList[eleNum].active == true || eleList[eleNum].countInside > 0)
                 {
                     #region DirectionPart
-                    int endFloor=4;
+
+                    int endFloor = 4;
                     lock (eleList)
                     {
-                        if (eleList[eleNum].floor == 4) { 
+                        if (eleList[eleNum].floor == 4)
+                        {
                             eleList[eleNum].direction = "down";
                             endFloor = 4;
                         }
                         else if (eleList[eleNum].floor == 0) eleList[eleNum].direction = "up";
+
+                        if (eleList[eleNum].direction == "up") eleList[eleNum].floor++;
+                        else if (eleList[eleNum].direction == "down") eleList[eleNum].floor--;
+
+                        var grpBx = (Controls["eve" + (eleNum + 1).ToString()] as GroupBox);
+                        grpBx.Location = locationListEle[eleNum, eleList[eleNum].floor];
 
                         int insideListTargets = eleList[eleNum].insideList.Where(p => p.targetFloor > (eleList[eleNum].floor)).Count();
                         int lineList;
@@ -339,12 +347,6 @@ namespace ElevatorDensityProject
                             else if (eleList[eleNum].floor == 0) eleList[eleNum].direction = "stand";
                             endFloor = eleList[eleNum].floor;
                         }
-
-                        if (eleList[eleNum].direction == "up") eleList[eleNum].floor++;
-                        else if (eleList[eleNum].direction == "down") eleList[eleNum].floor--;
-
-                        var grpBx = (Controls["eve" + (eleNum + 1).ToString()] as GroupBox);
-                        grpBx.Location = locationListEle[eleNum, eleList[eleNum].floor];
                     }
 
                     #endregion DirectionPart
@@ -381,7 +383,7 @@ namespace ElevatorDensityProject
                                     person.inElevator = false;
                                     eleList[eleNum].insideList.Remove(leavingElevatorList[i]);
                                     eleList[eleNum].countInside--;
-                                    ((Controls["eve" + (eleNum + 1).ToString()] as GroupBox).Controls["ele" + (eleNum + 1).ToString() + "Cap"] as TextBox).Text = eleList[eleNum].countInside + "/" + eleList[eleNum].capacity;
+                                
                                 }
                             }
                         }
@@ -406,8 +408,7 @@ namespace ElevatorDensityProject
                                         eleList[eleNum].insideList.Add(person);
                                         eleList[eleNum].countInside++;
                                         person.inElevator = true;
-                                        person.inLine = false;
-                                        ((Controls["eve" + (eleNum + 1).ToString()] as GroupBox).Controls["ele" + (eleNum + 1).ToString() + "Cap"] as TextBox).Text = eleList[eleNum].countInside + "/" + eleList[eleNum].capacity;
+                                        person.inLine = false;                                   
                                         person.currentFloor = -1;
                                     }
                                 }
