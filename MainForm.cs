@@ -14,14 +14,14 @@ namespace ElevatorDensityProject
             InitializeComponent();
         }
 
-        #region Settings
+        #region SleepSettings
 
         public static int msControl = 1000;
         public static int msElevator = 200;
         public static int msEntering = 500;
         public static int msExit = 1000;
 
-        #endregion Settings
+        #endregion SleepSettings
 
         #region GlobalDefines
 
@@ -120,11 +120,11 @@ namespace ElevatorDensityProject
 
         private void GenerateElevator()
         {
-            eleList.Add(new Elevator { active = true, capacity = 10, countInside = 0, elevatorID = 1, floor = -1, mode = "working", target = 0, direction = "up" });
-            eleList.Add(new Elevator { active = false, capacity = 10, countInside = 0, elevatorID = 2, floor = -1, mode = "idle", target = 0, direction = "up" });
-            eleList.Add(new Elevator { active = false, capacity = 10, countInside = 0, elevatorID = 3, floor = -1, mode = "idle", target = 0, direction = "up" });
-            eleList.Add(new Elevator { active = false, capacity = 10, countInside = 0, elevatorID = 4, floor = -1, mode = "idle", target = 0, direction = "up" });
-            eleList.Add(new Elevator { active = false, capacity = 10, countInside = 0, elevatorID = 5, floor = -1, mode = "idle", target = 0, direction = "up" });
+            eleList.Add(new Elevator { active = true, capacity = 10, countInside = 0, elevatorID = 1, floor = -1, mode = "working", direction = "up" });
+            eleList.Add(new Elevator { active = false, capacity = 10, countInside = 0, elevatorID = 2, floor = -1, mode = "idle", direction = "up" });
+            eleList.Add(new Elevator { active = false, capacity = 10, countInside = 0, elevatorID = 3, floor = -1, mode = "idle", direction = "up" });
+            eleList.Add(new Elevator { active = false, capacity = 10, countInside = 0, elevatorID = 4, floor = -1, mode = "idle", direction = "up" });
+            eleList.Add(new Elevator { active = false, capacity = 10, countInside = 0, elevatorID = 5, floor = -1, mode = "idle", direction = "up" });
         }
 
         #endregion FormMethods
@@ -318,11 +318,27 @@ namespace ElevatorDensityProject
                 if (eleList[eleNum].active == true || eleList[eleNum].countInside > 0)
                 {
                     #region DirectionPart
-
+                    int endFloor=4;
                     lock (eleList)
                     {
-                        if (eleList[eleNum].floor == 4) eleList[eleNum].direction = "down";
+                        if (eleList[eleNum].floor == 4) { 
+                            eleList[eleNum].direction = "down";
+                            endFloor = 4;
+                        }
                         else if (eleList[eleNum].floor == 0) eleList[eleNum].direction = "up";
+
+                        int insideListTargets = eleList[eleNum].insideList.Where(p => p.targetFloor > (eleList[eleNum].floor)).Count();
+                        int lineList;
+                        lock (peopleList)
+                        {
+                            lineList = peopleList.Where(p => p.currentFloor > eleList[eleNum].floor && p.inLine == true).Count();
+                        }
+                        if (insideListTargets == 0 && lineList == 0)
+                        {
+                            if (eleList[eleNum].floor > 0) eleList[eleNum].direction = "down";
+                            else if (eleList[eleNum].floor == 0) eleList[eleNum].direction = "stand";
+                            endFloor = eleList[eleNum].floor;
+                        }
 
                         if (eleList[eleNum].direction == "up") eleList[eleNum].floor++;
                         else if (eleList[eleNum].direction == "down") eleList[eleNum].floor--;
@@ -338,7 +354,7 @@ namespace ElevatorDensityProject
                         #region ListOperations
 
                         List<Person> enteringElevatorList;
-                        if (eleList[eleNum].direction == "up" && (eleList[eleNum].floor > 0 && eleList[eleNum].floor!=4 )) enteringElevatorList = null;
+                        if (eleList[eleNum].direction == "up" && (eleList[eleNum].floor > 0 && eleList[eleNum].floor != endFloor)) enteringElevatorList = null;
                         else enteringElevatorList = peopleList.Where(p => p.currentFloor == eleList[eleNum].floor && p.inLine == true && p.inStore == true).ToList();
                         List<Person> leavingElevatorList = eleList[eleNum].insideList.Where(p => p.targetFloor == eleList[eleNum].floor).ToList();
 

@@ -20,7 +20,6 @@ D:\GitHubProjects\ElevatorDensinty\bin\Debug\EntityFramework.dll
 D:\GitHubProjects\ElevatorDensinty\bin\Debug\EntityFramework.SqlServer.dll
 D:\GitHubProjects\ElevatorDensinty\bin\Debug\EntityFramework.xml
 D:\GitHubProjects\ElevatorDensinty\bin\Debug\EntityFramework.SqlServer.xml
-D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.csprojAssemblyReference.cache
 D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.MainForm.resources
 D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.Properties.Resources.resources
 D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.csproj.GenerateResource.cache
@@ -28,3 +27,4 @@ D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.csproj.CoreC
 D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.csproj.CopyComplete
 D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.exe
 D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.pdb
+D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.csprojAssemblyReference.cache

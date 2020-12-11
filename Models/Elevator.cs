@@ -17,10 +17,10 @@ namespace ElevatorDensityProject.Models
         public bool active { get; set; }
         public string mode { get; set; }
         public int floor { get; set; }
-        public int target { get; set; }
         public string direction { get; set; }
         public int capacity { get; set; }
         public int countInside { get; set; }
+        public int endFloor { get; set; }
         public  List<Person> insideList { get; set; }
     }
 }
