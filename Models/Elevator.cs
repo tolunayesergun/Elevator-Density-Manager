@@ -20,7 +20,6 @@ namespace ElevatorDensityProject.Models
         public string direction { get; set; }
         public int capacity { get; set; }
         public int countInside { get; set; }
-        public int endFloor { get; set; }
         public  List<Person> insideList { get; set; }
     }
 }
