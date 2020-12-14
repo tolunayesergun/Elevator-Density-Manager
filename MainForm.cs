@@ -58,6 +58,7 @@ namespace ElevatorDensityProject
         private readonly List<Elevator> eleList = new List<Elevator>();
 
         private static int TotalPersonNumber = 0;
+        private static int lineNumberCount = 0;
 
         #endregion GlobalDefines
 
@@ -276,7 +277,7 @@ namespace ElevatorDensityProject
                 {
                     for (int i = 0; i < peopleNumber; i++)
                     {
-                        peopleList.Add(new Person { personID = TotalPersonNumber, inStore = true, currentFloor = 0, targetFloor = rnd.Next(1, 5), inLine = true, inElevator = false });
+                        peopleList.Add(new Person { lineNumber=-1,personID = TotalPersonNumber, inStore = true, currentFloor = 0, targetFloor = rnd.Next(1, 5), inLine = true, inElevator = false });
                         TotalPersonNumber++;
                     }
                 }
@@ -302,7 +303,9 @@ namespace ElevatorDensityProject
                             int personId = lineList[rnd.Next(lineList.Count())].personID;
                             var person = peopleList.Where(p => p.personID == personId).FirstOrDefault();
                             person.targetFloor = 0;
+                            person.lineNumber = lineNumberCount++;
                             person.inLine = true;
+                            
                         }
                     }
                 }
@@ -357,7 +360,7 @@ namespace ElevatorDensityProject
 
                         List<Person> enteringElevatorList;
                         if (eleList[eleNum].direction == "up" && (eleList[eleNum].floor > 0 && eleList[eleNum].floor != endFloor)) enteringElevatorList = null;
-                        else enteringElevatorList = peopleList.Where(p => p.currentFloor == eleList[eleNum].floor && p.inLine == true && p.inStore == true).ToList();
+                        else enteringElevatorList = peopleList.Where(p => p.currentFloor == eleList[eleNum].floor && p.inLine == true && p.inStore == true).OrderBy(p => p.lineNumber).ToList();
                         List<Person> leavingElevatorList = eleList[eleNum].insideList.Where(p => p.targetFloor == eleList[eleNum].floor).ToList();
 
                         #endregion ListOperations
@@ -394,6 +397,7 @@ namespace ElevatorDensityProject
 
                         if (enteringElevatorList != null)
                         {
+                          
                             if (eleList[eleNum].active == true)
                             {
                                 int loopCount = eleList[eleNum].capacity - eleList[eleNum].countInside;
