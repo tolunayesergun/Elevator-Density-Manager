@@ -27,4 +27,3 @@ D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.csproj.CoreC
 D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.csproj.CopyComplete
 D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.exe
 D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.pdb
-D:\GitHubProjects\ElevatorDensinty\obj\Debug\ElevatorDensityProject.csprojAssemblyReference.cache

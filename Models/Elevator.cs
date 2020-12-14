@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ElevatorDensityProject.Models
 {
-    class Elevator
+    internal class Elevator
     {
         public Elevator()
         {
@@ -20,6 +16,6 @@ namespace ElevatorDensityProject.Models
         public string direction { get; set; }
         public int capacity { get; set; }
         public int countInside { get; set; }
-        public  List<Person> insideList { get; set; }
+        public List<Person> insideList { get; set; }
     }
 }
